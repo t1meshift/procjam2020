@@ -19,18 +19,11 @@ namespace pj::scenes {
         texComp->texture(texture);
         texComp1->texture(texture);
 
-        posComp->xy(0, 0);
-        posComp->anchorXY(0.5, 0.5);
-        posComp->pivotXY(0.5, 0.5);
-        posComp1->xy(0, 0);
-        posComp1->anchorXY(0.5, 0.5);
-        posComp1->pivotXY(0.5, 0.5);
+        posComp->xy(30, 30);
+        posComp1->xy(50, 50);
 
-        //tfmComp->scaleXY(2, 2);
-        tfmComp1->scaleXY(0.5, 0.5);
-
-        tfmComp->rotation(30);
-        tfmComp1->rotation(-30);
+        tfmComp->scaleXY(1.5, 1.5);
+        tfmComp1->scaleXY(0.2, 0.2);
 
         testSprite->addChild(std::move(testSprite1));
         rootNode->addChild(std::move(testSprite));

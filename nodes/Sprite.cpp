@@ -44,17 +44,13 @@ namespace pj::nodes {
         auto tThis = relativeTransformation();
         auto tGlobal = t.applyChild(tThis);
 
-        auto pivotPosX = tThis.pivotX() * tThis.width();
-        auto pivotPosY = tThis.pivotY() * tThis.height();
-
         sf::Transform tSf;
         tSf.translate(static_cast<float>(tGlobal.relativeX()),
                       static_cast<float>(tGlobal.relativeY()));
-        tSf.rotate(static_cast<float>(tGlobal.rotation()),
-                   static_cast<float>(pivotPosX),
-                   static_cast<float>(pivotPosY));
-        tSf.scale(static_cast<float>(tThis.scaleX()),
-                  static_cast<float>(tThis.scaleY()));
+        auto sx = tThis.width() / sprite_.getTexture()->getSize().x * tGlobal.scaleX();
+        auto sy = tThis.height() / sprite_.getTexture()->getSize().y * tGlobal.scaleY();
+        tSf.scale(static_cast<float>(sx),
+                  static_cast<float>(sy));
 
         window.draw(sprite_, tSf);
 

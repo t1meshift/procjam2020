@@ -32,6 +32,7 @@ namespace pj::nodes {
     public:
         class Transformation : public PositionComponent, public TransformComponent {
         public:
+            // TODO rewrite it to make proper affine transformations
             Transformation() = default;
             explicit Transformation(const PositionComponent& pos, const TransformComponent& tfm);
 

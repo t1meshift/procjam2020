@@ -64,21 +64,18 @@ namespace pj::nodes {
         PositionComponent(pos), TransformComponent(tfm) {}
 
     double BaseNode::Transformation::relativeX() const {
-        return x() - pivotX() * width() * scaleX();
+        //return x() - pivotX() * width() * scaleX();
+        return x();
     }
 
     double BaseNode::Transformation::relativeY() const {
-        return y() - pivotY() * height() * scaleY();
+        //return y() - pivotY() * height() * scaleY();
+        return y();
     }
 
     BaseNode::Transformation &BaseNode::Transformation::applyChild(const BaseNode::Transformation &t) {
-        pivotXY(anchorX() - pivotX(),
-                anchorY() - pivotY());
-
-        xy(x() - t.relativeX(),
-           y() - t.relativeY());
-
-        rotation(rotation() + t.rotation());
+        xy(x() + t.x(), y() + t.y());
+        scaleXY(scaleX() * t.scaleX(), scaleY() * t.scaleY());
         return *this;
     }
 }
