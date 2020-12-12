@@ -39,11 +39,15 @@ namespace pj::scenes {
 
     void TestScene::update(double dt) {
         auto node = rootNode->findChild("eblo");
-        auto rotationSpeed = 90.0;
+        auto startScale = 0.3;
+        auto endScale = 1.5;
+
         if (node.has_value()) {
             auto node_nn = node->lock();
             auto tfc = node_nn->component<TransformComponent>();
-            tfc->rotation(tfc->rotation() + rotationSpeed * dt);
+            auto scale = startScale + (endScale - startScale) * ((std::sin(dtSum_) + 1) / 2);
+            tfc->scaleXY(scale, scale);
+            dtSum_ += dt;
         }
         BaseScene::update(dt);
     }
